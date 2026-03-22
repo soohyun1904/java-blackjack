@@ -15,9 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class StateTest {
     private Hand handWith(Card... cards) {
-        Hand hand = Hand.empty();
-        hand.draw(List.of(cards));
-        return hand;
+        return Hand.empty().draw(List.of(cards));
     }
 
     @Nested
