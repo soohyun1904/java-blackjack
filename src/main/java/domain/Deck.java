@@ -17,7 +17,7 @@ public class Deck {
         return new Deck(cards, strategy);
     }
 
-    public static Deck of(Card... cards) {
+    static Deck of(Card... cards) {
         return new Deck(new ArrayList<>(List.of(cards)), cards2 -> {});
     }
 
