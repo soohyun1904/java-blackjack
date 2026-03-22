@@ -1,8 +1,11 @@
 package domain.state;
 
+import domain.Card;
 import domain.Hand;
 
-public abstract class Started implements State{
+import java.util.List;
+
+public abstract class Started implements State {
     protected final Hand hand;
 
     protected Started(Hand hand) {
@@ -10,7 +13,17 @@ public abstract class Started implements State{
     }
 
     @Override
-    public Hand hand() {
-        return hand;
+    public int score() {
+        return hand.calculateScore();
+    }
+
+    @Override
+    public boolean isBust() {
+        return hand.isBust();
+    }
+
+    @Override
+    public List<Card> cards() {
+        return hand.cards();
     }
 }

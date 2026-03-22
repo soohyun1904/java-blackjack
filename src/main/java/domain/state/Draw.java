@@ -4,13 +4,13 @@ import domain.Hand;
 
 import java.math.BigDecimal;
 
-public class Blackjack extends Finished {
-    public Blackjack(Hand hand) {
+public class Draw extends Finished {
+    public Draw(Hand hand) {
         super(hand);
     }
 
     @Override
     protected BigDecimal earningRate() {
-        return new BigDecimal("1.5");
+        return BigDecimal.ZERO;
     }
 }

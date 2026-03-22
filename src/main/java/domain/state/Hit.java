@@ -3,8 +3,6 @@ package domain.state;
 import domain.Card;
 import domain.Hand;
 
-import java.util.List;
-
 public class Hit extends Running{
     public Hit(Hand hand) {
         super(hand);
@@ -12,7 +10,7 @@ public class Hit extends Running{
 
     @Override
     public State draw(Card card) {
-        hand.draw(List.of(card));
+        hand.draw(card);
         if (hand.isBust()) {
             return new Bust(hand);
         }

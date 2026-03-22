@@ -3,6 +3,8 @@ package domain.state;
 import domain.Card;
 import domain.Hand;
 
+import java.math.BigDecimal;
+
 public abstract class Finished extends Started {
     protected Finished(Hand hand) {
         super(hand);
@@ -24,9 +26,9 @@ public abstract class Finished extends Started {
     }
 
     @Override
-    public double profit(double betAmount) {
-        return betAmount * earningRate();
+    public BigDecimal profit(BigDecimal betAmount) {
+        return betAmount.multiply(earningRate());
     }
 
-    protected abstract double earningRate();
+    protected abstract BigDecimal earningRate();
 }

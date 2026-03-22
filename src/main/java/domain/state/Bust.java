@@ -2,13 +2,15 @@ package domain.state;
 
 import domain.Hand;
 
-public class Bust extends Finished{
+import java.math.BigDecimal;
+
+public class Bust extends Finished {
     public Bust(Hand hand) {
         super(hand);
     }
 
     @Override
-    protected double earningRate() {
-        return -1;
+    protected BigDecimal earningRate() {
+        return BigDecimal.ONE.negate();
     }
 }

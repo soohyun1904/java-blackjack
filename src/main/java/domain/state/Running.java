@@ -2,8 +2,10 @@ package domain.state;
 
 import domain.Hand;
 
-public abstract class Running extends Started{
-   protected Running(Hand hand) {
+import java.math.BigDecimal;
+
+public abstract class Running extends Started {
+    protected Running(Hand hand) {
         super(hand);
     }
 
@@ -13,7 +15,7 @@ public abstract class Running extends Started{
     }
 
     @Override
-    public double profit(double betAmount) {
+    public BigDecimal profit(BigDecimal betAmount) {
         throw new IllegalStateException("아직 진행중입니다.");
     }
 }
