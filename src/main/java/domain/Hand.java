@@ -14,28 +14,32 @@ public class Hand {
         this.cards = cards;
     }
 
-    public static Hand empty(){
+    public static Hand empty() {
         return new Hand(new ArrayList<>());
     }
 
-    public void draw(Card card) {
-        this.cards.add(card);
+    public Hand draw(Card card) {
+        List<Card> newCards = new ArrayList<>(this.cards);
+        newCards.add(card);
+        return new Hand(newCards);
     }
 
-    public void draw(List<Card> cards) {
-        this.cards.addAll(cards);
+    public Hand draw(List<Card> cards) {
+        List<Card> newCards = new ArrayList<>(this.cards);
+        newCards.addAll(cards);
+        return new Hand(newCards);
     }
 
-    public boolean isBlackjack(){
+    public boolean isBlackjack() {
         return cards.size() == BLACKJACK_CARD_COUNT
                 && calculateScore() == BLACKJACK_THRESHOLD;
     }
 
-    public boolean isBust(){
+    public boolean isBust() {
         return calculateScore() > BLACKJACK_THRESHOLD;
     }
 
-    public int calculateScore(){
+    public int calculateScore() {
         int totalScore = sumCardScore();
         return adjustForAces(totalScore);
     }
@@ -55,7 +59,7 @@ public class Hand {
         return totalScore;
     }
 
-    public int aceCount() {
+    private int aceCount() {
         return (int) cards.stream()
                 .filter(Card::isAce)
                 .count();
