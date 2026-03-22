@@ -29,7 +29,7 @@ public class Card {
     }
 
     public String displayName(){
-        return suit.getKoreanName() + rank.getSymbol();
+        return rank.getSymbol() + suit.getKoreanName();
     }
 
     public boolean isAce(){
