@@ -30,10 +30,15 @@ public class Stay extends Started {
         throw new IllegalStateException("딜러와 비교가 필요합니다.");
     }
 
+    @Override
     public State judge(int dealerScore) {
         int myScore = score();
-        if (myScore > dealerScore) return new Win(hand);
-        if (myScore < dealerScore) return new Lose(hand);
+        if (myScore > dealerScore) {
+            return new Win(hand);
+        }
+        if (myScore < dealerScore) {
+            return new Lose(hand);
+        }
         return new Draw(hand);
     }
 }

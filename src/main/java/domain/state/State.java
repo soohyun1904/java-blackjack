@@ -8,9 +8,9 @@ import java.util.List;
 public interface State {
     State draw(Card card);
     State stay();
+    State judge(int dealerScore);
     boolean isFinished();
     BigDecimal profit(BigDecimal betAmount);
     int score();
-    boolean isBust();
     List<Card> cards();
 }

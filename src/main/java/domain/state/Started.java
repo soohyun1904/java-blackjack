@@ -13,13 +13,13 @@ public abstract class Started implements State {
     }
 
     @Override
-    public int score() {
-        return hand.calculateScore();
+    public State judge(int dealerScore) {
+        return this;
     }
 
     @Override
-    public boolean isBust() {
-        return hand.isBust();
+    public int score() {
+        return hand.calculateScore();
     }
 
     @Override

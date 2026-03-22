@@ -5,10 +5,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 class HandTest {
-    private Hand handWith(Card... cards){
-        Hand hand = Hand.empty();
-        hand.draw(List.of(cards));
-        return hand;
+    private Hand handWith(Card... cards) {
+        return Hand.empty().draw(List.of(cards));
     }
 
     @Test
