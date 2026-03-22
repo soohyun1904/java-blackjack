@@ -60,4 +60,8 @@ public class Hand {
                 .filter(Card::isAce)
                 .count();
     }
+
+    public List<Card> cards() {
+        return List.copyOf(cards);
+    }
 }
