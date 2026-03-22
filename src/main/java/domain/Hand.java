@@ -18,6 +18,10 @@ public class Hand {
         return new Hand(new ArrayList<>());
     }
 
+    public void draw(Card card) {
+        this.cards.add(card);
+    }
+
     public void draw(List<Card> cards) {
         this.cards.addAll(cards);
     }
