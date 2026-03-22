@@ -36,6 +36,10 @@ public class Card {
         return this.rank.isAce();
     }
 
+    public int rank(){
+        return rank.getValue();
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (!(o instanceof Card card)) return false;
