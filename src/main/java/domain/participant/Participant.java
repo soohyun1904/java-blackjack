@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public abstract class Participant {
-    private static final int BUST_THRESHOLD = 21;
 
     private final Name name;
+    private Hand hand;
     private State state;
 
     protected Participant(Name name) {
@@ -20,16 +20,21 @@ public abstract class Participant {
     }
 
     public void deal(List<Card> cards) {
-        Hand hand = Hand.empty().draw(cards);
-        this.state = StateFactory.init(hand);
+        hand = Hand.empty().draw(cards);
+        state = StateFactory.init(hand.isBlackjack());
     }
 
     public void draw(Card card) {
-        state = getState().draw(card);
+        hand = hand.draw(card);
+        state = getState().draw(hand.isBust());
     }
 
     public void stay() {
         state = getState().stay();
+    }
+
+    public void judge(int dealerScore) {
+        state = getState().judge(score(), dealerScore);
     }
 
     public boolean isFinished() {
@@ -37,19 +42,15 @@ public abstract class Participant {
     }
 
     public int score() {
-        return getState().score();
+        return hand.calculateScore();
     }
 
     public boolean isBust() {
-        return score() > BUST_THRESHOLD;
-    }
-
-    public void judge(int dealerScore) {
-        state = getState().judge(dealerScore);
+        return hand.isBust();
     }
 
     public List<Card> cards() {
-        return getState().cards();
+        return hand.cards();
     }
 
     public String name() {

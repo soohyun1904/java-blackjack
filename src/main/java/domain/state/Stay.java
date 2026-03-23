@@ -1,44 +1,37 @@
 package domain.state;
 
-import domain.Card;
-import domain.Hand;
-
 import java.math.BigDecimal;
 
-public class Stay extends Started {
-    public Stay(Hand hand) {
-        super(hand);
+public class Stay extends Finished {
+    private Stay() {
+    }
+
+    private static class SingleInstanceHolder{
+        private static final Stay INSTANCE = new Stay();
+    }
+
+    public static Stay getInstance(){
+        return Stay.SingleInstanceHolder.INSTANCE;
     }
 
     @Override
-    public State draw(Card card) {
-        throw new IllegalStateException("이미 종료된 상태입니다.");
+    public State judge(int myScore, int dealerScore) {
+        if (myScore > dealerScore) {
+            return Win.getInstance();
+        }
+        if (myScore < dealerScore) {
+            return Lose.getInstance();
+        }
+        return Draw.getInstance();
     }
 
     @Override
-    public State stay() {
-        throw new IllegalStateException("이미 종료된 상태입니다.");
-    }
-
-    @Override
-    public boolean isFinished() {
-        return true;
+    protected BigDecimal earningRate() {
+        throw new IllegalStateException("딜러와 비교가 필요합니다.");
     }
 
     @Override
     public BigDecimal profit(BigDecimal betAmount) {
         throw new IllegalStateException("딜러와 비교가 필요합니다.");
-    }
-
-    @Override
-    public State judge(int dealerScore) {
-        int myScore = score();
-        if (myScore > dealerScore) {
-            return new Win(hand);
-        }
-        if (myScore < dealerScore) {
-            return new Lose(hand);
-        }
-        return new Draw(hand);
     }
 }

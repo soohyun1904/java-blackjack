@@ -1,12 +1,12 @@
 package domain.state;
 
-import domain.Hand;
-
 import java.math.BigDecimal;
 
-public abstract class Running extends Started {
-    protected Running(Hand hand) {
-        super(hand);
+public abstract class Running implements State {
+
+    @Override
+    public State judge(int myScore, int dealerScore) {
+        return this;
     }
 
     @Override

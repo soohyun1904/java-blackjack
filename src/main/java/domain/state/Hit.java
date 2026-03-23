@@ -1,24 +1,27 @@
 package domain.state;
 
-import domain.Card;
-import domain.Hand;
-
 public class Hit extends Running {
-    public Hit(Hand hand) {
-        super(hand);
+    private Hit() {
+    }
+
+    private static class SingleInstanceHolder{
+        private static final Hit INSTANCE = new Hit();
+    }
+
+    public static Hit getInstance(){
+        return Hit.SingleInstanceHolder.INSTANCE;
     }
 
     @Override
-    public State draw(Card card) {
-        Hand newHand = hand.draw(card);
-        if (newHand.isBust()) {
-            return new Bust(newHand);
+    public State draw(boolean isBust) {
+        if (isBust) {
+            return Bust.getInstance();
         }
-        return new Hit(newHand);
+        return Hit.getInstance();
     }
 
     @Override
     public State stay() {
-        return new Stay(hand);
+        return Stay.getInstance();
     }
 }

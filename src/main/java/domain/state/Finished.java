@@ -1,23 +1,22 @@
 package domain.state;
 
-import domain.Card;
-import domain.Hand;
-
 import java.math.BigDecimal;
 
-public abstract class Finished extends Started {
-    protected Finished(Hand hand) {
-        super(hand);
-    }
+public abstract class Finished implements State {
 
     @Override
-    public State draw(Card card) {
+    public State draw(boolean isBust) {
         throw new IllegalStateException("이미 종료된 상태입니다.");
     }
 
     @Override
     public State stay() {
         throw new IllegalStateException("이미 종료된 상태입니다.");
+    }
+
+    @Override
+    public State judge(int myScore, int dealerScore) {
+        return this;
     }
 
     @Override

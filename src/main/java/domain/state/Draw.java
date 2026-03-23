@@ -1,12 +1,17 @@
 package domain.state;
 
-import domain.Hand;
-
 import java.math.BigDecimal;
 
 public class Draw extends Finished {
-    public Draw(Hand hand) {
-        super(hand);
+    private Draw() {
+    }
+
+    private static class SingleInstanceHolder{
+        private static final Draw INSTANCE = new Draw();
+    }
+
+    public static Draw getInstance(){
+        return Draw.SingleInstanceHolder.INSTANCE;
     }
 
     @Override

@@ -1,12 +1,17 @@
 package domain.state;
 
-import domain.Hand;
-
 import java.math.BigDecimal;
 
 public class Blackjack extends Finished {
-    public Blackjack(Hand hand) {
-        super(hand);
+    private Blackjack() {
+    }
+
+    private static class SingleInstanceHolder{
+        private static final Blackjack INSTANCE = new Blackjack();
+    }
+
+    public static Blackjack getInstance(){
+        return SingleInstanceHolder.INSTANCE;
     }
 
     @Override

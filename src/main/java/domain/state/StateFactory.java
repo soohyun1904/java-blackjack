@@ -1,12 +1,10 @@
 package domain.state;
 
-import domain.Hand;
-
 public class StateFactory {
-    public static State init(Hand hand) {
-        if (hand.isBlackjack()) {
-            return new Blackjack(hand);
+    public static State init(boolean isBlackjack) {
+        if (isBlackjack) {
+            return Blackjack.getInstance();
         }
-        return new Hit(hand);
+        return Hit.getInstance();
     }
 }
